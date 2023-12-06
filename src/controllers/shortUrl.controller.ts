@@ -5,11 +5,11 @@ import { uid } from "uid";
 export const shortUrl = async (req: Request, res: Response) => {
   const {originalUrl} = req.body;
   const urlFound = await urlModel.findOne({originalUrl});
-  const shortedUrl = `http://localhost:5173/${uid(6)}`;
-
+  
   if (urlFound) return res.status(200).json(urlFound.shortedUrl);
-
+  
   try {
+    const shortedUrl = `http://localhost:5173/${uid(6)}`;
     const newUrl = new urlModel({shortedUrl, originalUrl});
     await newUrl.save();
     res.status(200).json(newUrl.shortedUrl);

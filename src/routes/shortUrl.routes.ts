@@ -5,7 +5,7 @@ import { shortUrl, shortUrlCounter } from "../controllers/shortUrl.controller";
 
 const router = Router();
 
-router.post("/shortUrl", shortUrl);
+router.post("/shorturl", shortUrl);
 router.get("/urlshortcount", shortUrlCounter)
 
 export default router;
