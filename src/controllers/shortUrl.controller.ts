@@ -46,3 +46,19 @@ export const shortUrlCounter = async (req: Request, res: Response) => {
     console.log(error);
   }
 }
+
+export const verifyUrl = async (req: Request, res: Response) => {
+  const {shortedUrl} = req.body;
+  try {
+    const urlFound = await urlModel.findOne({shortedUrl});
+    if (urlFound) {
+      res.status(200).json(urlFound.originalUrl);
+    } else {
+      res.status(404).json({message: "Url not found"});
+    }
+  } catch (error) {
+    res.status(500).json({error: "Url not found"});
+    console.log(error);
+  }
+
+}
