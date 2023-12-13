@@ -17,7 +17,7 @@ export const shortUrl = async (req: Request, res: Response) => {
   
   try {
     if (continueUrl) {
-      const shortedUrl = `http://localhost:5173/${uid(6)}`;
+      const shortedUrl = `https://linkshortener-tsv.vercel.app/${uid(6)}`;
       const newUrl = new urlModel({shortedUrl, originalUrl});
       await newUrl.save();
       res.status(200).json(newUrl.shortedUrl);
@@ -25,7 +25,7 @@ export const shortUrl = async (req: Request, res: Response) => {
     }
     const {status} = await axios.head(originalUrl);
     if (status >= 200 && status <= 300) {
-      const shortedUrl = `http://localhost:5173/${uid(6)}`;
+      const shortedUrl = `https://linkshortener-tsv.vercel.app/${uid(6)}`;
       const newUrl = new urlModel({shortedUrl, originalUrl});
       await newUrl.save();
       res.status(200).json(newUrl.shortedUrl);
